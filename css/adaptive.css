@@ -1,5 +1,5 @@
 .container {
-  max-width: 1360px;
+  max-width: 1000px;
   width: 100%;
  border: none !important;
 }
@@ -109,6 +109,13 @@ span.size{ display: none; }
        .lang-menu li a{
         font-size: 14px;
        }
+       .top .lang-menu{
+        top: 7px;
+      }
+      .login{
+        left: -5px;
+      }
+
        .lang-menu li a img{
         margin-left: -33px;
         width: 28px;
@@ -298,7 +305,7 @@ span.size{ display: none; }
       padding-right: 0;
     }
 
-    .lang-menu.top{
+    .top .lang-menu{
       margin-top: -60px;
       right: 0;
     }
@@ -355,7 +362,7 @@ span.size{ display: none; }
   top: -145px;
   width: 61px;
 }
-.menu-open .lang-menu.top{
+.menu-open .top .lang-menu{
   z-index: 435;
   top: 0;
   margin-top: 82px;
@@ -374,20 +381,20 @@ span.size{ display: none; }
   -webkit-background-size: 100%;
   -moz-background-size: 100%;
   -o-background-size: 100%;
-  min-height: 170px;
+  min-height: 130px;
 }
 
-.fixedHeaderMobile .lang-menu.top{
+.fixedHeaderMobile .top .lang-menu{
   position: fixed;
   top:0;
   margin-top: 5px;
   z-index: 405;
 }
- .menu-open .lang-menu.top{
+ .menu-open .top .lang-menu{
   top: 0;
   right: -10px;
   }
-.fixedHeaderMobile.menu-open .lang-menu.top{
+.fixedHeaderMobile.menu-open .top .lang-menu{
   top: 78px;
   }
 
@@ -457,7 +464,7 @@ background-image: none;
 }
 
 .home{
-  margin-top: 80px;
+  z-index: 14;
 }
 .home .btns{
   margin-top: 0;
@@ -775,10 +782,10 @@ background-image: none;
       }
 
 
-    .fixedHeaderMobile .lang-menu.top{
+    .fixedHeaderMobile .top .lang-menu{
       right: 0;
       }
-     .fixedHeaderMobile.menu-open .lang-menu.top{
+     .fixedHeaderMobile.menu-open .top .lang-menu{
       right: -15px;
       }
 
@@ -788,7 +795,7 @@ background-image: none;
  header nav .left, header nav .right{display: none;}
 
 
- .lang-menu.top{
+ .top .lang-menu{
         margin-top: -55px;
         margin-left: 0;
         right: 0;
@@ -862,7 +869,7 @@ background-image: none;
   top: -145px;
   width: 61px;
 }
-.menu-open .lang-menu.top{
+.menu-open .top .lang-menu{
   z-index: 435;
   top: 0;
   margin-top: 82px;
@@ -884,18 +891,19 @@ background-image: none;
   min-height: 130px;
 }
 
-.fixedHeaderMobile .lang-menu.top{
+.fixedHeaderMobile .top {
   position: fixed;
   top:0;
-  margin-top: 5px;
+  margin-top: -15px;
   z-index: 405;
 }
- .menu-open .lang-menu.top{
+ .menu-open .top {
   top: 0;
   right: -10px;
   }
-.fixedHeaderMobile.menu-open .lang-menu.top{
-  top: 78px;
+.fixedHeaderMobile.menu-open .top {
+  top: 12px;
+  right: 0;
   }
 
 .menu-open .menu-close{

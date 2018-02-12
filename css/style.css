@@ -62,11 +62,11 @@ body:after{
   -moz-background-size: 100% auto;
   -o-background-size: 100% auto;
 
-  animation-name: movement;
+ /* animation-name: movement;
   animation-duration: 455s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-
+*/
 }
 
 @keyframes movement
@@ -101,17 +101,20 @@ a{text-decoration: none; color: #152f5c;}
 a:hover{text-decoration: none; color: #2a5795;}
 a:visited,a:focus{text-decoration: none; outline:none;}
 h2{
-  font-size: 50px;
+  font-size: 40px;
   color: #1b215c;
   line-height: 1;
   font-weight: bold;
-  margin-bottom: 30px;
+  margin-top: 10px;
+  margin-bottom: 20px;
   text-align: center;
   font-family: "Ubuntu";
 }
-
+h3{
+  font-size: 20px;
+}
 .container{
-  width: 1360px;
+  width: 1000px;
   z-index: 3;
   position: relative;
 }
@@ -126,32 +129,30 @@ header a{
   text-align: center;
   position: relative;
   z-index: 1;
-  padding: 96px 0;
+  padding: 65px 0;
   margin: 0;
 }
 .logo-large a{
   position: relative;
   display: inline-block;
-  mask-type: 10px;
 }
 .logo-large .ring{
   position: absolute;
   left: 0;
   top: 0;
 }
+
 .logo-large .ring1{
-  left: -70px;
-  top: -55px;
+  left: -52px;
+  top: -38px;
 }
 .logo-large .ring2{
-  left: -70px;
-  top: -55px;
+  left: -52px;
+  top: -387px;
 }
 .logo-large .ring3{
-  left: -58px;
-  top: -70px;
-}
-.logo-large .ring1,.logo-large .ring2{
+  left: -46px;
+  top: -51px;
   display: block;
 }
 
@@ -274,7 +275,7 @@ header nav .right{
 }
 
 body.fixedHeader header nav ul{
-  max-width: 1360px;
+  max-width: 1000px;
   margin: auto;
 }
 
@@ -307,7 +308,7 @@ header nav a, header nav a:visited{
   cursor: pointer;
   display: inline-block;
   padding: 5px 0 0;
-  font-size: 18px;
+  font-size: 16px;
   border-bottom: 1px solid transparent;
   text-transform: uppercase;
   background-color: transparent !important;
@@ -325,7 +326,7 @@ header nav a:hover, header nav a.active,nav a:visited:hover,nav a:focus:hover{
 nav a:visited,nav a:focus{background-color: transparent !important;}
 
 .content{
-  padding: 25px 30px;
+  padding: 15px 30px;
   position: relative;
   z-index: 4;
 }
@@ -338,9 +339,9 @@ nav a:visited,nav a:focus{background-color: transparent !important;}
 .content.with-angle:after{
   content: "";
   position: absolute;
-  height: 148px;
+  height: 98px;
   width: 100%;
-  bottom: -138px;
+  bottom: -98px;
   left: 0;
   z-index: 6;
   background-image: url("../img/white-bottom.png");
@@ -386,13 +387,13 @@ nav a:visited,nav a:focus{background-color: transparent !important;}
   content: "";
   background-image: url("../img/gray-top.png");
   position: absolute;
-  height: 148px;
+  height: 98px;
   width: 100%;
-  top: -137px;
+  top: -98px;
   left: 0;
   z-index: 6;
   background-repeat: no-repeat;
-  background-position: center top;
+  background-position: center bottom;
    background-size: 100%;
   -webkit-background-size: 100%;
   -moz-background-size: 100%;
@@ -400,15 +401,18 @@ nav a:visited,nav a:focus{background-color: transparent !important;}
 }
 .intro .red-text{
   text-transform: uppercase;
-  font-size: 24px;
+  font-size: 20px;
   color: #e10019;
   padding: 0 0 30px 0;
-  line-height: 1.26;
+  line-height: 1.2;
 }
-.intro .btns .btn{
-  margin-right: 1%;
-  width: 99%;
-}
+ .intro .btns .btn{
+        margin-right: 0;
+        width: 100%;
+       }
+    .intro .btns > .row > div[class*='col-'] {
+         padding-right: 0;
+    }
 
 .intro .items{
   margin: 0 0 45px;
@@ -441,18 +445,19 @@ nav a:visited,nav a:focus{background-color: transparent !important;}
 .intro .share{
   float: right;
   white-space: nowrap;
+  margin-right: -10px;
 }
 .intro .share a{
   display: inline-block;
   background-color: #000000;
   color: #ffffff;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   text-align: center;
-  line-height: 50px;
+  line-height: 40px;
   border-radius: 50%;
-  font-size: 28px;
-  margin-right: 12px;
+  font-size: 24px;
+  margin-right: 0;
 }
 
 .intro .share a:last-child{
@@ -506,8 +511,12 @@ right: 38px;
   }
 .intro .databar label{color: #999999;font-size: 14px;margin-top: 15px;font-weight: normal;}
 .intro .databar label b{color: #000000; font-weight: normal;}
-.intro .databar label:last-child{float:right;}
+.intro .databar label:last-child{float:none;}
 .intro .databar label i{color: #e30613;margin-right: 5px;}
+.intro .databar label{
+        float: none;
+        display: block;
+}
 
 .home{
   position: relative;
@@ -588,8 +597,8 @@ right: 38px;
   margin-bottom: 20px;
 }
 .panel {
-  margin-top: 37px;
-  padding: 35px;
+  margin-top: 20px;
+  padding: 25px;
   background-color: #ffffff;
   border-radius: 10px;
    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
@@ -599,7 +608,7 @@ right: 38px;
 .panel .text{
   text-align: center;
   color: #e30613;
-  font-size: 18px;
+  font-size: 14px;
   line-height: 1.5;
 }
 .panel .text b{
@@ -659,7 +668,6 @@ right: 38px;
 .points .item .text, .profits .item .text{
   text-align: left;
   line-height: 1.3;
-  padding-right: 60px;
 }
 .keyproblem{
   z-index: 9;
@@ -668,7 +676,7 @@ right: 38px;
 .keyproblem .content, .platform .content,
 .team .content,.news .content,.roadmap .content, .interface .content{
   padding-top: 155px;
-  padding-bottom: 40px;
+  padding-bottom: 10px;
   margin-top: -123px;
   margin-bottom: 0 !important;
 }
@@ -1101,7 +1109,7 @@ right: 38px;
  text-transform: uppercase;
   line-height: 1.5;
   margin-bottom: 30px;
-  font-size: 24px;
+  font-size: 20px;
 }
 .interface .btns{
   margin-bottom: 40px;
@@ -1170,7 +1178,7 @@ color: #e30613;
   margin-top: 40px;
 }
 .countdown .countdown-container {
-  height: 90px;
+  height: 60px;
   display: inline-block;
   text-align: left;
 }
@@ -1183,8 +1191,8 @@ color: #e30613;
   display: inline-block;
   text-align: center;
   position: relative;
-  height: 82px;
-  width: 65px;
+  height: 62px;
+  width: 50px;
 
   margin-right: 3px;
 
@@ -1218,8 +1226,8 @@ color: #e30613;
   color: #ffffff;
   display: block;
   font-weight: normal;
-  font-size: 48px;
-  line-height: 82px;
+  font-size: 40px;
+  line-height: 62px;
   overflow: hidden;
   position: absolute;
   text-align: center;
@@ -1282,7 +1290,7 @@ color: #e30613;
 .countdown .count.next {
 }
 .countdown .label {
-  font-size: 14px;
+  font-size: 13px;
   margin-top: 5px;
   display: block;
   position: absolute;
@@ -1353,18 +1361,18 @@ color: #e30613;
 }
  .social a {
   position: relative;
-  height: 46px;
-  line-height: 52px;
+  height: 38px;
+  line-height: 40px;
   padding: 0;
   text-align: center;
-  width: 46px;
+  width: 38px;
   display: inline-block;
   border: none;
   border-radius: 50%;
-  margin-right: 8px;
+  margin-right: 4px;
 }
 .social a i{
-  font-size: 28px;
+  font-size: 22px;
   color: #ffffff;
 }
 .social a.fb{
@@ -1443,7 +1451,7 @@ textarea{height: 120px; padding: 15px;}
   line-height: 1;
   color: #ffffff;
   outline: none;
-  padding: 22px 0;
+  padding: 15px 0;
   border-radius: 10px;
   font-size: 14px;
   vertical-align: top;
@@ -1520,7 +1528,7 @@ input[type="text"],input[type="search"],input[type="email"],input[type="password
   border-top: 1px solid #b8bac0;
   background-color: #e6e8f0;
   resize: none;
-  padding: 30px 20px;
+  padding: 20px 20px;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -1912,11 +1920,11 @@ button{
 footer{
   color: #ffffff; 
   position: relative;
-  padding: 40px 0 75px;
+  padding: 40px 0 0
   z-index: 3;
 }
 footer .content{
-  padding-top: 115px;
+  padding-top: 155px;
   padding-bottom: 40px;
   margin: -123px 0;
   background-color: #060d31;
@@ -2152,14 +2160,36 @@ box-shadow:
  left: 100px;
 }
 
-
+.login{
+  display: inline-block;
+  position: relative;
+  top: 38px;
+  left: -20px;
+}
+.login a{
+  color:#e30613;
+  font-size: 14px;
+  text-decoration: underline;
+}
+.login a:hover{
+  text-decoration: none;
+}
+.top{
+  position: absolute;
+  right: 10px;
+  margin-top: -70px;
+   right: 10px;
+   z-index: 200;
+}
 
 /************** LANG MENU ***************/
 
-.lang-menu.top{
-   margin-top: -90px;
-   margin-left: -30px;
+.top .lang-menu{
    top: auto;
+   position: relative;
+   right: auto;
+   display: inline-block;
+   margin-top: 0;
 }
 
 .lang-menu a{
@@ -2183,9 +2213,9 @@ box-shadow:
 .lang-menu li:after,.lang-menu li:before{
   position: absolute;
   content: "";
-  width: 30px;
+  width: 50px;
   background-color: #060d31;/* #060d31*/
-  left: -30px;
+  left: -50px;
   top: 0;
   height: 100%;
 }
@@ -2199,7 +2229,7 @@ box-shadow:
 .lang-menu li{float:none; margin: 0;}
 .lang-menu{
   position: absolute;
-  z-index: 120;
+  z-index: 420;
   min-width: 95px;
   right: 30px;
   top: 0;
@@ -2215,109 +2245,28 @@ box-shadow:
 }
 .lang-menu.open li{display: block;}
 
-/*.lang-menu{
-  position: relative;
-  min-width: 55px;
-}
-.lang-menu.top{
-  top: -110px;
-}
-.lang-menu ul{
-  position: absolute;
-  padding: 0;
-  float: none;
-  z-index: 90;
-  right: 45px;
-  top: 59px;
-  width: 100px;
-}
-.lang-menu li{
-  position: relative;
-  display: block;
-  float: left;
-   width: calc(100% + 15px);
-  margin-right: 0!important;
-  right: -38px;
-}
-.lang-menu li:first-child{
-  right: 0;
-}
-
-.lang-menu a{display: none;position: relative;z-index: 20;text-align: right;}
-.lang-menu.open li{float:right;}
-
-.lang-menu.open a{display: block;}
-.lang-menu li:first-child a{display: block;}
-
-.lang-menu a span img {float: left;position: absolute;left: -38px; top: -4px;}
-
-.lang-menu li:first-child a span img{left: -40px;}
-*/
-/*.lang-menu li:first-child a:after{
-  color: #ffffff;
-  content: "\e252";
-  font-size: 11px;
-  cursor: pointer;
-  font-family: "Glyphicons Halflings";  
-  font-style: normal;
-  font-weight: normal; 
-  position: absolute;
-  right: -33px;
-  top: 2px; 
-}
-.lang-menu.open li:first-child a:after{
-  content: "\e253";
-  font-size: 0.64em;
-  right: -18px;
-  top: 4px; 
-}
-.lang-menu li:first-child a:hover:after{
-color: #404b5e;
-}*/
-
-/*
-.lang-menu li a{
-  background-color: #060d31 !important;
-  height: 50px;
-  left: 0;
-  padding: 0 0 0 30px;
-  line-height: 50px;
+.panel .blocks > div{
+  border-radius: 10px;
+  background-color: #e7e7eb;
+  font-size: 20px;
   text-align: center;
-  cursor: pointer;
+  color: #000000;
+  margin: 12px 0;
+  font-weight: bold;
+  padding: 10px;
 }
-.lang-menu li a:hover{
-background-color: #060d31 !important;
+.panel .blocks > div:last-child{
+  margin-bottom: 0;
+}
+.panel .blocks > div > b{
+  display: block;
+  color: #e30613;
+  font-weight: normal;
+  font-size: 14px;
+  padding-top: 8px;
+}
 
-}
-.lang-menu li:first-child a,.lang-menu li:first-child a:hover{
-  background-color: transparent !important;
-}
-.lang-menu li a span{
-  position: relative;
-  left: 0;
-}
-.lang-menu li:first-child a{
-  background-color: transparent;
-  height: auto;
-  width: auto;
-  line-height: 1.5;
-  text-align: right;
-  cursor: pointer;
-  padding: 0;
-  top: -16px;
-}
-.lang-menu.open li:first-child{
-  width: auto;
-  float: right;
-  right: -15px;
-  }
-  .lang-menu.open li:first-child a{
-  
-  }
-.lang-menu li:first-child a span{
-  left: 0;
-}
-*/
+
 
 a, nav li a, .btn, .btn:after,footer .footer-nav a, .slick-dots li button{
   -webkit-transition: all 0.3s ease-out;
@@ -2341,5 +2290,3 @@ body.fixedHeader .intro{
   -o-transition: none;
   transition: none;
 }
-
-/*test*/
