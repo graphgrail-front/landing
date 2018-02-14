@@ -30,7 +30,7 @@ eval `ssh-agent -s`
 ssh-add $OUT_KEY
 
 echo "Add backend repo as backend"
-git add backend ${BACKEND_REPO}
+git remote add backend ${BACKEND_REPO}
 popd
 
 if ! [[ -z $(git status -s) ]] ; then
