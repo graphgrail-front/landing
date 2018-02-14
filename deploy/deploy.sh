@@ -49,8 +49,11 @@ echo "Copy data to the backend repo"
 mkdir -p ../$BACKEND_NAME/public/
 rsync -avi --delete ./ ../$BACKEND_NAME/public/
 rm -rf ../${BACKEND_NAME}/public/deploy
+rm -rf ../${BACKEND_NAME}/public/.git
 rm -f ../${BACKEND_NAME}/public/.gitignore
 rm -f ../${BACKEND_NAME}/public/.travis.yml
+rm -f ../${BACKEND_NAME}/public/id_rsa
+echo "End copy data to the backend repo"
 
 echo "Add new data to the backend repo git"
 pushd ../$BACKEND_NAME
@@ -60,7 +63,7 @@ git config user.email "$COMMIT_AUTHOR_EMAIL"
 git add -A .
 if ! [[ -z $(git status -s) ]] ; then
   echo "Pushing changes to the $BACKEND_REPO staging branch"
-  git commit -m "Add new build data from $BACKEND_NAME frontend $HEAD_COMMIT commit to $BUILD_BRANCH"
+  git commit -m "Add new build data from $FRONTEND_REPO frontend $HEAD_COMMIT commit to $BUILD_BRANCH"
   git push origin $BUILD_BRANCH
   echo "Add $HEROKU_REPO_URL as heroku remote"
   git remote add heroku $HEROKU_URL
