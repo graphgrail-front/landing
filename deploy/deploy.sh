@@ -31,7 +31,6 @@ ssh-add $OUT_KEY
 
 echo "Add backend repo as backend"
 git remote add backend ${BACKEND_REPO}
-popd
 
 if ! [[ -z $(git status -s) ]] ; then
   echo "Pushing changes to the $BACKEND_REPO $BUILD_BRANCH branch"
