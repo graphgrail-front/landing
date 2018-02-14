@@ -16,8 +16,10 @@ fi
 
 FRONTEND_HEAD_COMMIT=`git rev-parse --verify --short HEAD`
 FRONTEND_REPO=`git config remote.origin.url`
-BACKEND_NAME="landing"
-BACKEND_REPO="git@github.com:graphgrail-front/${BACKEND_NAME}.git"
+BACKEND_NAME="graphgrail"
+HEROKU_NAME="graphgrailai"
+BACKEND_REPO="git@github.com:oomag/${BACKEND_NAME}.git"
+HEROKU_PROD_REPO_URL="git@heroku.com:${HEROKU_NAME}.git"
 
 echo "Prepare the key..."
 # Encryption key is a key stored in travis itself
@@ -29,12 +31,42 @@ echo "Add decoded key to the ssh agent keystore"
 eval `ssh-agent -s`
 ssh-add $OUT_KEY
 
-echo "Add backend repo as backend"
-git remote add backend ${BACKEND_REPO}
+echo "Pull upstream backend repo"
+pushd ..
+git clone $BACKEND_REPO $BACKEND_NAME
+echo "Return back to the original repo"
+popd
 
+BUILD_BRANCH=$MASTER_BRANCH
+HEROKU_URL=$HEROKU_PROD_REPO_URL
+
+echo "Checkout to $BUILD_BRANCH branch in backend repo"
+pushd ../$BACKEND_NAME
+git checkout $BUILD_BRANCH
+popd
+
+echo "Copy data to the backend repo"
+mkdir -p ../$BACKEND_NAME/public/
+rsync -avi --delete ./ ../$BACKEND_NAME/public/
+rm -rf ../${BACKEND_NAME}/public/deploy
+rm -f ../${BACKEND_NAME}/public/.gitignore
+rm -f ../${BACKEND_NAME}/public/.travis.yml
+
+echo "Add new data to the backend repo git"
+pushd ../$BACKEND_NAME
+git config user.name "Travis CI"
+git config user.email "$COMMIT_AUTHOR_EMAIL"
+
+git add -A .
 if ! [[ -z $(git status -s) ]] ; then
-  echo "Pushing changes to the $BACKEND_REPO $BUILD_BRANCH branch"
-  git push backend $BUILD_BRANCH
+  echo "Pushing changes to the $BACKEND_REPO staging branch"
+  git commit -m "Add new build data from $BACKEND_NAME frontend $HEAD_COMMIT commit to $BUILD_BRANCH"
+  git push origin $BUILD_BRANCH
+  echo "Add $HEROKU_REPO_URL as heroku remote"
+  git remote add heroku $HEROKU_URL
+  echo "Pushing to heroku remote..."
+  export GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
+  git push -q --force heroku $BUILD_BRANCH:master
   echo "All done."
 else
   echo "There are no changes in result build, so nothing to push forward. End here."
