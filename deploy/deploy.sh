@@ -1,7 +1,8 @@
 #!/bin/bash
 set -e  # Exit with non-zero if anything fails
 
-BUILD_BRANCH="master"
+MASTER_BRANCH="master"
+STAGING_BRANCH="staging"
 
 # Do not build a new version if it is a pull-request or commit not to BUILD_BRANCH
 if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
@@ -9,8 +10,8 @@ if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
     exit 0
 fi
 
-if [ "$TRAVIS_BRANCH" != "$BUILD_BRANCH" ]; then
-    echo "Not $BUILD_BRANCH branch but $TRAVIS_BRANCH, skipping deploy;"
+if [ "$TRAVIS_BRANCH" != "$MASTER_BRANCH" ] && [ "$TRAVIS_BRANCH" != "$STAGING_BRANCH" ]; then
+    echo "Not $MASTER_BRANCH or $STAGING_BRANCH branch but $TRAVIS_BRANCH, skipping deploy;"
     exit 0
 fi
 
@@ -19,7 +20,8 @@ FRONTEND_REPO=`git config remote.origin.url`
 BACKEND_NAME="graphgrail"
 HEROKU_NAME="graphgrailai"
 BACKEND_REPO="git@github.com:oomag/${BACKEND_NAME}.git"
-HEROKU_PROD_REPO_URL="git@heroku.com:${HEROKU_NAME}.git"
+HEROKU_STAGING_REPO_URL="git@heroku.com:graphgrailai.git"
+HEROKU_PROD_REPO_URL="git@heroku.com:graphgrailaiproduction.git"
 
 echo "Prepare the key..."
 # Encryption key is a key stored in travis itself
@@ -37,8 +39,13 @@ git clone $BACKEND_REPO $BACKEND_NAME
 echo "Return back to the original repo"
 popd
 
-BUILD_BRANCH=$MASTER_BRANCH
-HEROKU_URL=$HEROKU_PROD_REPO_URL
+if [ "$TRAVIS_BRANCH" == "$MASTER_BRANCH" ]; then
+  BUILD_BRANCH=$MASTER_BRANCH
+  HEROKU_URL=$HEROKU_PROD_REPO_URL
+else
+  BUILD_BRANCH=$STAGING_BRANCH
+  HEROKU_URL=$HEROKU_STAGING_REPO_URL
+fi
 
 echo "Checkout to $BUILD_BRANCH branch in backend repo"
 pushd ../$BACKEND_NAME
@@ -47,12 +54,7 @@ popd
 
 echo "Copy data to the backend repo"
 mkdir -p ../$BACKEND_NAME/public/
-rsync -avi --delete ./ ../$BACKEND_NAME/public/
-rm -rf ../${BACKEND_NAME}/public/deploy
-rm -rf ../${BACKEND_NAME}/public/.git
-rm -f ../${BACKEND_NAME}/public/.gitignore
-rm -f ../${BACKEND_NAME}/public/.travis.yml
-rm -f ../${BACKEND_NAME}/public/id_rsa
+rsync -avi --exclude=deploy --exclude=id_rsa --exclude=.git --exclude=.travis.yml --exclude=.gitignore ./ ../$BACKEND_NAME/public/
 echo "End copy data to the backend repo"
 
 echo "Add new data to the backend repo git"
@@ -69,7 +71,7 @@ if ! [[ -z $(git status -s) ]] ; then
   git remote add heroku $HEROKU_URL
   echo "Pushing to heroku remote..."
   export GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
-  git push -q --force heroku $BUILD_BRANCH
+  git push -q --force heroku $BUILD_BRANCH:master
   echo "All done."
 else
   echo "There are no changes in result build, so nothing to push forward. End here."
