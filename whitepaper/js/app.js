@@ -10,9 +10,4 @@ $(document).ready(function() {
 		$('.langes').toggleClass('opened');
 	});
 
-	$('.navBurger').click(function(){
-		$('.mobile').toggleClass('showed');
-		$('.main_container').toggleClass('moved');
-	});
-
 });
