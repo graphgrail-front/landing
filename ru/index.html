@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="ru">
     <head>
+        <!-- Google Analytics Content Experiment code -->
+        <script>function utmx_section(){}function utmx(){}(function(){var
+            k='82788860-2',d=document,l=d.location,c=d.cookie;
+            if(l.search.indexOf('utm_expid='+k)>0)return;
+            function f(n){if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.
+            indexOf(';',i);return escape(c.substring(i+n.length+1,j<0?c.
+                length:j))}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;d.write(
+                '<sc'+'ript src="'+'http'+(l.protocol=='https:'?'s://ssl':
+                '://www')+'.google-analytics.com/ga_exp.js?'+'utmxkey='+k+
+                '&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='+new Date().
+                valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
+                '" type="text/javascript" charset="utf-8"><\/sc'+'ript>')})();
+        </script><script>utmx('url','A/B');</script>
+        <!-- End of Google Analytics Content Experiment code -->
+
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1.0, user-scalable=yes, minimum-scale=1.0" />
@@ -14,6 +29,7 @@
         <link rel="stylesheet" href="../css/style.css?cssv=65">
         <link rel="stylesheet" href="../css/adaptive.css?cssv=65">
         <link rel="icon" type="image/png" href="../favicon.ico" />
+        <script type="text/javascript" src="//vk.com/js/api/openapi.js?154"></script>
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&amp;subset=cyrillic" rel="stylesheet">
         <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -236,6 +252,24 @@
                                                     </script>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="databar">
+                                        <div class="bar">
+                                        <span class="barCloud">$2 M</span>
+                                        <span class="barCloud">$10 M</span>
+                                        </div>
+                                        <span class="scap">Softcap</span>
+                                        <span class="hcap">Hardcap</span>
+                                        <div class="preico">
+                                          <div class="cash">Pre ICO<br>$200 K</div>
+                                        </div>
+                                        <div id="investorsInLine"></div>
+                                        <div id="raised" class="raised raisedMobile raisedSmallMobile">
+                                          <div class="cash">$<span id="USDClone"></span></div>
+                                        </div>
+                                        <label class="data left"><b>19 февр.</b></label>
+                                        <label class="data right"><b>25 мая</b></label>
+                                        <div class="additionalInfo"><div>Total tokens: 270 000 000 <br>Token price: 1 GAI = $0.1 <br>1 ETH = 8900 GAI Tokens</div><div style="margin-right: 0;">BONUSES: <br>Presale investors: 40% <br>White-list investors: 40%</div></div>
                                     </div>
                                     <h1 class="botFormTitle">Test named entity extraction API:</h1>
                                     <div class="botForm">
@@ -1590,7 +1624,7 @@ GraphGrailAi - одна из трех компаний в РФ с сервисо
      <script type='text/javascript' src="../js/jquery.easing.1.3.js"></script>
      <script type='text/javascript' src="../js/jquery.scrollTo.min.js"></script>
      <script type="text/javascript" src="../js/moment.js"></script>
-     <script type="text/javascript" src="../js/script.js"></script>
+     <script type="text/javascript" src="../js/script.js?jsv=1"></script>
      <script type="text/javascript" src="../js/adaptive.js"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -1674,7 +1708,7 @@ GraphGrailAi - одна из трех компаний в РФ с сервисо
   </script>
   <script type="text/javascript">
   $(document).ready(function() {
-    jQuery.getJSON('/stat', {}, function(json){
+    jQuery.getJSON('../json/stat.json', {}, function(json){
       jQuery('#totalWorth').html((parseInt( (Math.round(json.tokens_total).toFixed(0)))+ 10000000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + '<b>Worth of GAI tokens*</b>'  );
       jQuery('#currentUSD').html((parseInt(Math.round(json.usd_total).toFixed(0)) + 200000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "));
       jQuery('#investors').html((Math.round(json.number_investors + 90).toFixed(0)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + '<b>Purchasers</b>');
@@ -1686,7 +1720,7 @@ GraphGrailAi - одна из трех компаний в РФ с сервисо
       function postMagic(){
         var currentUSD = parseInt(Math.round(json.usd_total).toFixed(0))+200000;
         var usdPercent = (12000000/100);
-        finalWidth = ((currentUSD+600000)/usdPercent);
+        finalWidth = ((currentUSD+800000)/usdPercent);
         if($(window).width()<768){
           finalWidth = ((currentUSD+1000000)/usdPercent);
         }
